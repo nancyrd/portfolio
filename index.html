@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nancy Ramadan | Portfolio</title> <!--[cite: 1] -->
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #0284c7;
+            --primary-light: #38bdf8;
+            --primary-glow: rgba(56, 189, 248, 0.3);
+            --border: rgba(226, 232, 240, 0.8);
+            --shadow: 0 10px 30px -10px rgba(2, 132, 199, 0.1);
+            --badge-bg: #e0f2fe;
+            --badge-text: #0369a1;
+        }
+
+        [data-theme="dark"] {
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #38bdf8;
+            --primary-light: #7dd3fc;
+            --primary-glow: rgba(56, 189, 248, 0.15);
+            --border: rgba(51, 65, 85, 0.5);
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --badge-bg: #1e293b;
+            --badge-text: #38bdf8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.7;
+            padding-bottom: 60px;
+        }
+
+        /* Navbar & Controls */
+        .nav-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            padding: 10px 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        /* Main Layout Container */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Header */
+        header {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, var(--text-main), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .typewriter-wrapper {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 25px;
+            height: 30px;
+        }
+
+        .typing-text {
+            color: var(--primary);
+            font-weight: 700;
+            border-right: 2px solid var(--primary);
+            animation: blink 0.75s step-end infinite;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Sections Typography */
+        section {
+            margin-top: 60px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-main);
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--border), transparent);
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Dynamic Grid Framework */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+            .grid-layout { grid-template-columns: 1fr; }
+        }
+
+        /* Unified Card Base Style */
+        .item-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .item-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary-light);
+            box-shadow: 0 15px 35px -10px var(--primary-glow);
+        }
+
+        /* Experience Specific Content Padding */
+        .experience-card-padding {
+            padding: 25px;
+        }
+
+        .card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .meta-line {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .card-body {
+            padding: 0 25px 25px 25px;
+            flex-grow: 1;
+        }
+
+        .card-body ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .card-body li {
+            margin-bottom: 8px;
+        }
+
+        /* Skills Layout */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        .skill-category h3 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Projects Layout, Image Frame and Interaction Elements */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .project-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: #e2e8f0;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .item-card:hover .project-img-wrapper img {
+            transform: scale(1.06);
+        }
+
+        .project-title-padding {
+            padding: 20px 25px 10px 25px;
+        }
+
+        .action-links {
+            padding: 0 25px 25px 25px;
+            display: flex;
+            gap: 12px;
+            margin-top: auto;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            background: var(--card-bg);
+            color: var(--text-main);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-action.primary-btn {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .btn-action:hover {
+            border-color: var(--primary-light);
+            transform: translateY(-1px);
+        }
+
+        /* New Premium Blog Grid and Card Components */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .blog-card .blog-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+        }
+
+        .blog-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .blog-card h3 a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blog-card h3 a:hover {
+            color: var(--primary);
+        }
+
+        .blog-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-more:hover {
+            color: var(--primary-light);
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Animations */
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body data-theme="light">
+
+    <!-- Navbar Container -->
+    <div class="nav-container">
+        <div class="nav-content">
+            <div class="logo">NR.DEV</div>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme">
+                <i class="fa-solid fa-moon"></i> <span id="theme-text">Dark Mode</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Hero Profile Area -->
+        <header>
+            <h1>Nancy Ramadan</h1> <!--[cite: 1] -->
+            <div class="typewriter-wrapper">
+                <span>I'm a </span><span class="typing-text" id="typewriter"></span>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card"><i class="fa-solid fa-location-dot"></i> Beirut, Lebanon</div> <!--[cite: 1] -->
+                <a href="tel:+96170820237" class="contact-card"><i class="fa-solid fa-phone"></i> +961 70 820 237</a> <!--[cite: 1] -->
+                <a href="mailto:nancyramadan35@gmail.com" class="contact-card"><i class="fa-solid fa-envelope"></i> nancyramadan35@gmail.com</a> <!--[cite: 1] -->
+                <a href="https://www.linkedin.com/in/nancy--ramadan" target="_blank" class="contact-card"><i class="fa-brands fa-linkedin"></i> LinkedIn</a> <!--[cite: 1] -->
+            </div>
+        </header>
+
+        <!-- Brief Professional Profile -->
+        <section id="about">
+            <h2><i class="fa-solid fa-user-astronaut"></i> About Me</h2>
+            <div class="glass-card">
+                <!--[cite: 1] -->
+                <p>Junior Software Engineer and AWS Certified Cloud Practitioner with experience in software development, backend systems, and application development. Skilled in Java, C, C++, Python, SQL, object-oriented programming, and RESTful APIs. Experienced in database design, debugging, system troubleshooting, and software engineering principles. Strong analytical, problem-solving, teamwork, and communication skills with a passion for learning and developing innovative technical solutions.</p>
+            </div>
+        </section>
+
+        <!-- Functional Core Toolsets -->
+        <section id="skills">
+            <h2><i class="fa-solid fa-layer-group"></i> Technical Toolkit</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-server"></i> Backend & Logic</h3>
+                    <div class="tags">
+                        <!--[cite: 1] -->
+                        <span class="tag">Java</span><span class="tag">C++</span><span class="tag">C#</span>
+                        <span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">Python</span>
+                        <span class="tag">Laravel</span><span class="tag">.NET</span><span class="tag">RESTful APIs</span><span class="tag">JWT</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-code"></i> Frontend Architecture</h3>
+                    <div class="tags">
+                        <!--[cite: 1] -->
+                        <span class="tag">React.js</span><span class="tag">React Native</span>
+                        <span class="tag">JavaScript (ES6+)</span><span class="tag">HTML5</span><span class="tag">CSS3</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-cloud"></i> Database & Cloud</h3>
+                    <div class="tags">
+                        <!--[cite: 1] -->
+                        <span class="tag">AWS (Certified Practitioner)</span><span class="tag">Azure</span>
+                        <span class="tag">MongoDB</span><span class="tag">MySQL</span><span class="tag">Git / GitHub</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3><i class="fa-solid fa-screwdriver-wrench"></i> Systems & Practices</h3>
+                    <div class="tags">
+                        <!--[cite: 1] -->
+                        <span class="tag">Active Directory</span><span class="tag">IIS</span>
+                        <span class="tag">FortiGate Firewall</span><span class="tag">Raspberry Pi</span>
+                        <span class="tag">Clean Code</span><span class="tag">Agile/Scrum</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Employment History Section -->
+        <section id="experience">
+            <h2><i class="fa-solid fa-briefcase"></i> Experience Timeline</h2>
+            <div class="grid-layout">
+                <div class="item-card experience-card-padding">
+                    <div class="card-header">
+                        <h3>IT Help Desk Intern</h3>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-building"></i> Hyundai Motor Company, Zalqa</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> Jul 2025 - Dec 2025</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                    <div style="padding: 0; color: var(--text-muted); font-size: 0.95rem;">
+                        <ul style="padding-left: 20px;">
+                            <li>Provided technical support for hardware, software, and network issues. <!--[cite: 1] --></li>
+                            <li>Performed system administration and server maintenance tasks. <!--[cite: 1] --></li>
+                            <li>Worked with Active Directory and FortiGate firewall configurations. <!--[cite: 1] --></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="item-card experience-card-padding">
+                    <div class="card-header">
+                        <h3>Smart Systems Intern</h3>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-university"></i> American University of Beirut</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> Jun 2024 - Oct 2024</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                    <div style="padding: 0; color: var(--text-muted); font-size: 0.95rem;">
+                        <ul style="padding-left: 20px;">
+                            <li>Developed a human recognition system using machine learning and computer vision. <!--[cite: 1] --></li>
+                            <li>Built and deployed an IoT electricity monitoring system using Raspberry Pi. <!--[cite: 1] --></li>
+                            <li>Managed backend data collection and system integration. <!--[cite: 1] --></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Grid Section with Image Placeholders & Link Nodes -->
+        <section id="projects">
+            <h2><i class="fa-solid fa-laptop-code"></i> Featured Projects</h2>
+            
+            <div class="filter-controls">
+                <button class="filter-btn active" onclick="filterProjects('all')">All Tech</button>
+                <button class="filter-btn" onclick="filterProjects('fullstack')">Full-Stack</button>
+                <button class="filter-btn" onclick="filterProjects('ai')">AI & Automation</button>
+                <button class="filter-btn" onclick="filterProjects('systems')">Core Engineering</button>
+            </div>
+
+            <div class="grid-layout">
+                <!-- Project 1 -->
+                <div class="item-card project-card" data-category="fullstack">
+                    <div class="project-img-wrapper">
+                        <!-- Replace src with your project screenshot path -->
+                        <img src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?q=80&w=800&auto=format&fit=crop" alt="LMS Screen Capture">
+                    </div>
+                    <div class="card-header project-title-padding">
+                        <h3>Python Learning Platform (LMS)</h3>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-tags"></i> PHP Laravel, React, MongoDB</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> 2025</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Built a full-stack learning management system with role-based access control. <!--[cite: 1] --></li>
+                            <li>Implemented gamified design mechanics aimed at simplifying programming concepts. <!--[cite: 1] --></li>
+                        </ul>
+                    </div>
+                    <div class="action-links">
+                        <a href="#" class="btn-action primary-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
+                        <a href="#" class="btn-action"><i class="fa-brands fa-github"></i> Codebase</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="item-card project-card" data-category="fullstack">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=800&auto=format&fit=crop" alt="Intranet Architecture Mockup">
+                    </div>
+                    <div class="card-header project-title-padding">
+                        <h3>Hyundai Intranet Web App</h3>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-tags"></i> Java, Spring Boot, SQL, JS</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> 2025</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Developed an internal company intranet application featuring user authentication. <!--[cite: 1] --></li>
+                            <li>Integrated announcements, file management structures, and a responsive interface. <!--[cite: 1] --></li>
+                        </ul>
+                    </div>
+                    <div class="action-links">
+                        <a href="#" class="btn-action primary-btn"><i class="fa-solid fa-arrow-up-right-from-square"></i> Launch App</a>
+                        <a href="#" class="btn-action"><i class="fa-brands fa-github"></i> View Repository</a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="item-card project-card" data-category="ai">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1527474305487-b87b222841cc?q=80&w=800&auto=format&fit=crop" alt="Computer Vision Tracking Grid">
+                    </div>
+                    <div class="card-header project-title-padding">
+                        <h3>AI Face Mask Detection Engine</h3>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-tags"></i> Python, OpenCV, TensorFlow/CNN</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> 2024</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Built a real-time face detection engine with high classification accuracy model training. <!--[cite: 1] --></li>
+                            <li>Implemented frame processing captures natively via live webcams. <!--[cite: 1] --></li>
+                        </ul>
+                    </div>
+                    <div class="action-links">
+                        <a href="#" class="btn-action primary-btn"><i class="fa-solid fa-play"></i> Watch Demo</a>
+                        <a href="#" class="btn-action"><i class="fa-brands fa-github"></i> GitHub Source</a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="item-card project-card" data-category="systems">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=800&auto=format&fit=crop" alt="Logistics Inventory Framework">
+                    </div>
+                    <div class="card-header project-title-padding">
+                        <h3>Inventory Management System</h3>
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-tags"></i> C, C++, OOP Principles</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> 2024</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li>Architected data structure routing to handle stock metrics tracking and product tracking. <!--[cite: 1] --></li>
+                            <li>Applied debugging, testing, and optimized algorithms to maximize system speeds. <!--[cite: 1] --></li>
+                        </ul>
+                    </div>
+                    <div class="action-links">
+                        <a href="#" class="btn-action"><i class="fa-brands fa-github"></i> Source Engine</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New Premium Interactive Blog Section -->
+        <section id="blog">
+            <h2><i class="fa-solid fa-pen-nib"></i> Engineering Blog</h2>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="item-card blog-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop" alt="Cloud Data Core">
+                    </div>
+                    <div class="project-title-padding" style="padding-bottom: 0;">
+                        <div class="blog-meta">
+                            <span><i class="fa-solid fa-calendar"></i> May 2026</span>
+                            <span><i class="fa-solid fa-clock"></i> 5 min read</span>
+                        </div>
+                        <h3><a href="#">Demystifying AWS Certified Cloud Practitioner Roadmap</a></h3>
+                    </div>
+                    <div class="card-body" style="padding-top: 10px;">
+                        <p>A deep dive into essential core global infrastructure models, VPC networking concepts, and security guardrails necessary to pass the exam on your first attempt.</p>
+                        <a href="#" class="read-more">Read Post <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="item-card blog-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1607799279861-4dd421887fb3?q=80&w=800&auto=format&fit=crop" alt="Code Refactoring Editor">
+                    </div>
+                    <div class="project-title-padding" style="padding-bottom: 0;">
+                        <div class="blog-meta">
+                            <span><i class="fa-solid fa-calendar"></i> Mar 2026</span>
+                            <span><i class="fa-solid fa-clock"></i> 4 min read</span>
+                        </div>
+                        <h3><a href="#">Building Scalable Middleware Architectures with Node & Express</a></h3>
+                    </div>
+                    <div class="card-body" style="padding-top: 10px;">
+                        <p>How to correctly structure custom application middleware modules to manage authentication flows, token handling logic, and standardized server responses safely.</p>
+                        <a href="#" class="read-more">Read Post <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="item-card blog-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=800&auto=format&fit=crop" alt="Neural Networking Pattern">
+                    </div>
+                    <div class="project-title-padding" style="padding-bottom: 0;">
+                        <div class="blog-meta">
+                            <span><i class="fa-solid fa-calendar"></i> Jan 2026</span>
+                            <span><i class="fa-solid fa-clock"></i> 7 min read</span>
+                        </div>
+                        <h3><a href="#">An Introduction to Computer Vision Matrix Tracking with OpenCV</a></h3>
+                    </div>
+                    <div class="card-body" style="padding-top: 10px;">
+                        <p>Understanding live camera computational operations, mapping pixel matrices, and handling frame processing tasks smoothly without causing performance lag.</p>
+                        <a href="#" class="read-more">Read Post <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Credentials Framework -->
+        <section id="education">
+            <h2><i class="fa-solid fa-graduation-cap"></i> Education & Global Literacy</h2>
+            <div class="grid-layout">
+                <div class="item-card experience-card-padding">
+                    <div class="card-header">
+                        <h3>Bachelor of Science in Computer Science</h3> <!--[cite: 1] -->
+                        <div class="meta-line">
+                            <span><i class="fa-solid fa-school"></i> Antonine University, Baabda</span> <!--[cite: 1] -->
+                            <span><i class="fa-solid fa-calendar-days"></i> Sep 2022 - Sep 2025</span> <!--[cite: 1] -->
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card experience-card-padding">
+                    <div class="card-header">
+                        <h3>Language Proficiency</h3> <!--[cite: 1] -->
+                        <div class="meta-line">
+                            <span>🌐 Linguistic Frameworks</span>
+                        </div>
+                    </div>
+                    <div style="padding: 0; color: var(--text-muted); font-size: 0.95rem;">
+                        <p><strong>Arabic:</strong> Native <!--[cite: 1] --> | <strong>English:</strong> Fluent <!--[cite: 1] --> | <strong>French:</strong> Intermediate <!--[cite: 1] --></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Script Processing Layer -->
+    <script>
+        // Typewriter Effect Configuration
+        const words = ["Junior Software Engineer.", "AWS Certified Cloud Practitioner.", "Full-Stack Developer."]; //[cite: 1]
+        let i = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[i].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typewriter').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[i].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typewriter').innerHTML = word.join("");
+                } else {
+                    if (words.length > (i + 1)) {
+                        i++;
+                    } else {
+                        i = 0;
+                    }
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 60);
+            };
+            loopDeleting();
+        }
+        
+        typingEffect();
+
+        // Projects Filter Routing Logic
+        function filterProjects(category) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        // Theme Switch Management (Light / Dark Mode Router)
+        function toggleTheme() {
+            const body = document.body;
+            const themeText = document.getElementById('theme-text');
+            const icon = document.querySelector('.theme-toggle i');
+            
+            if (body.getAttribute('data-theme') === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeText.innerText = "Light Mode";
+                icon.className = "fa-solid fa-sun";
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeText.innerText = "Dark Mode";
+                icon.className = "fa-solid fa-moon";
+            }
+        }
+    </script>
+</body>
+</html>
